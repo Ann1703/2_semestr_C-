@@ -1,21 +1,59 @@
-﻿#include <iostream>
-#include "Piquet.h"
-#include "Railroad.h"
+#include <iostream>
+#include <string>
 
-int main()
-{
-    Piquet p1(12, 28.37, true);
-    Piquet p2(-5, 15.75, false);
+class Piquet {
+private:
+    int number;
+    double shift;
+    bool IsStandard;
 
-    Railroad railroad;
-    railroad.addPiquet(p1);
-    railroad.addPiquet(p2);
+public:
+    Piquet(int num, double sh, bool isStd) : number(num), shift(sh), IsStandard(isStd) {}
 
-    std::cout << "Railroad Mileage Information:" << std::endl;
-    std::cout << railroad.toString();
+    std::string toString() const {
+        if (number >= 0)
+            return "ПК " + std::to_string(number) + "+" + std::to_string(shift);
+        else
+            return "ПК 0" + std::to_string(-number) + "+" + std::to_string(shift);
+    }
 
-    std::cout << "Total Length of Railroad: " << railroad.calculateLength() << " meters" << std::endl;
+    bool operator<(const Piquet& other) const {
+        return number < other.number || (number == other.number && shift < other.shift);
+    }
 
-    return 0;
+    bool operator>(const Piquet& other) const {
+        return number > other.number || (number == other.number && shift > other.shift);
+    }
+};
 
-}
+class Railroad {
+private:
+    std::vector<Piquet> piquets;
+
+public:
+    void addPiquet(const Piquet& p) {
+        piquets.push_back(p);
+    }
+
+    double calculateLength() const {
+        double length = 0.0;
+        for (size_t i = 1; i < piquets.size(); ++i) {
+            length += piquets[i].IsStandard ? 100.0 : piquets[i].shift;
+        }
+        return length;
+    }
+
+    Perigon(const Piquet& p1, const Piquet& p2) {
+        addPiquet(p1);
+        addPiquet(p2);
+    }
+
+    std::string ToString() const {
+        std::string result;
+        for (const auto& p : piquets) {
+            result += p.toString() + "\n";
+        }
+        return result;
+    }
+};
+
