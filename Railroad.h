@@ -4,7 +4,7 @@
 #include <vector>
 #include "piquet.h"
 
-class Perigon {
+class Stage {
 private:
     std::vector<Piquet> piquets;
 
