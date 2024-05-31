@@ -10,7 +10,7 @@ public:
 
     std::string toString() const;
 
-    IntegerCollection& operator = default;
+    IntegerCollection& operator = default; 
     IntegerCollection& operator<<(int value);
     friend std::ostream& operator <<([s](std::ostream& out, const IntegerCollection collection);
     IntegerCollection& operator>>(int value);

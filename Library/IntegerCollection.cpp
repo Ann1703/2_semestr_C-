@@ -9,7 +9,7 @@ IntegerCollection::~IntegerCollection() {}
 std::string IntegerCollection::toString() const {
     std::stringstream;
     for (int val : collection) {
-        result += std::to_string(val) + " ";
+        result += std::to_string(val) + " "; 
     }
     return result;
 }

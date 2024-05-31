@@ -12,7 +12,7 @@ TEST(IntegerCollectionTest, BasicOperations) {
     EXPECT_EQ(collection.toString(), "5 2 8 1 9 10 ");
 
     // Проверка удаления последнего элемента
-    collection >> 10;
+    collection >> 10; 
     EXPECT_EQ(collection.toString(), "5 2 8 1 9 ");
 
     // Проверка поиска элемента с максимальным приоритетом
