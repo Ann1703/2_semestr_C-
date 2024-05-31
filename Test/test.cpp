@@ -1,6 +1,20 @@
-#include "pch.h"
+#include "gtest/gtest.h"
+#include "../Library/IntegerCollection.h"
 
-TEST(TestCaseName, TestName) {
-  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
+TEST(IntegerCollectionTest, BasicOperations) {
+    IntegerCollection collection = { 5, 2, 8, 1, 9 };
+
+    
+    EXPECT_EQ(collection.toString(), "5 2 8 1 9 ");
+
+    
+    collection << 10;
+    EXPECT_EQ(collection.toString(), "5 2 8 1 9 10 ");
+
+   
+    collection >> 10; 
+    EXPECT_EQ(collection.toString(), "5 2 8 1 9 ");
+
+  
+    EXPECT_EQ(collection.findMaxPriorityElement(), 9);
 }
