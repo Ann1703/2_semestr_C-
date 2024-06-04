@@ -15,66 +15,66 @@ private:
     std::vector<Piquet> piquets;
 
 public:
-    // Конструктор по умолчанию
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
     Peregon() {}
 
-    // Конструктор по двум пикетам
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ РґРІСѓРј РїРёРєРµС‚Р°Рј
     Peregon(const Piquet& start, const Piquet& end) {
         piquets.push_back(start);
         piquets.push_back(end);
         std::sort(piquets.begin(), piquets.end());
     }
 
-    // Конструктор по двум вещественным значениям
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ РґРІСѓРј РІРµС‰РµСЃС‚РІРµРЅРЅС‹Рј Р·РЅР°С‡РµРЅРёСЏРј
     Peregon(double start, double end) : Peregon(Piquet(start), Piquet(end)) {}
 
-    // Метод добавления нового пикета
+    // РњРµС‚РѕРґ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕРіРѕ РїРёРєРµС‚Р°
     void AddPiquet(const Piquet& piquet) {
         auto it = std::lower_bound(piquets.begin(), piquets.end(), piquet);
         piquets.insert(it, piquet);
     }
 
-    // Метод расчета длины перегона
-// Метод расчета длины перегона
+    // РњРµС‚РѕРґ СЂР°СЃС‡РµС‚Р° РґР»РёРЅС‹ РїРµСЂРµРіРѕРЅР°
+// РњРµС‚РѕРґ СЂР°СЃС‡РµС‚Р° РґР»РёРЅС‹ РїРµСЂРµРіРѕРЅР°
     double GetLength() const {
         if (piquets.empty()) {
             return 0;
         }
         double length = 0;
-        // Добавляем проверку на мерные и немерные пикеты
+        // Р”РѕР±Р°РІР»СЏРµРј РїСЂРѕРІРµСЂРєСѓ РЅР° РјРµСЂРЅС‹Рµ Рё РЅРµРјРµСЂРЅС‹Рµ РїРёРєРµС‚С‹
         for (size_t i = 1; i < piquets.size(); ++i) {
             if (piquets[i].IsMeasured() && piquets[i - 1].IsMeasured()) {
-                // Если оба пикета мерные, используем стандартную разницу
+                // Р•СЃР»Рё РѕР±Р° РїРёРєРµС‚Р° РјРµСЂРЅС‹Рµ, РёСЃРїРѕР»СЊР·СѓРµРј СЃС‚Р°РЅРґР°СЂС‚РЅСѓСЋ СЂР°Р·РЅРёС†Сѓ
                 length += piquets[i].Length() - piquets[i - 1].Length();
             }
             else {
-                // Если хотя бы один пикет немерный, используем фактическую разницу длин
+                // Р•СЃР»Рё С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ РїРёРєРµС‚ РЅРµРјРµСЂРЅС‹Р№, РёСЃРїРѕР»СЊР·СѓРµРј С„Р°РєС‚РёС‡РµСЃРєСѓСЋ СЂР°Р·РЅРёС†Сѓ РґР»РёРЅ
                 length += piquets[i].Length() - piquets[i - 1].Length();
             }
         }
         return length;
     }
 
-    // Метод toString
+    // РњРµС‚РѕРґ toString
     std::string ToString() const {
         setlocale(LC_ALL, "ru-RUS");
         std::stringstream ss;
-        ss << "Перегон: ";
+        ss << "РџРµСЂРµРіРѕРЅ: ";
         for (const auto& piquet : piquets) {
             ss << piquet.ToString() << " ";
         }
-        ss << "Длина: " << GetLength() << "м";
+        ss << "Р”Р»РёРЅР°: " << GetLength() << "Рј";
         return ss.str();
     }
 
-    // Метод чтения из стандартного потока ввода
+    // РњРµС‚РѕРґ С‡С‚РµРЅРёСЏ РёР· СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РїРѕС‚РѕРєР° РІРІРѕРґР°
     void ReadFromInput() {
         setlocale(LC_ALL, "ru-RUS");
         int startNumber, endNumber;
         double startShift, endShift;
-        std::cout << "Введите начальный пикет (номер + смещение): ";
+        std::cout << "Р’РІРµРґРёС‚Рµ РЅР°С‡Р°Р»СЊРЅС‹Р№ РїРёРєРµС‚ (РЅРѕРјРµСЂ + СЃРјРµС‰РµРЅРёРµ): ";
         std::cin >> startNumber >> startShift;
-        std::cout << "Введите конечный пикет (номер + смещение): ";
+        std::cout << "Р’РІРµРґРёС‚Рµ РєРѕРЅРµС‡РЅС‹Р№ РїРёРєРµС‚ (РЅРѕРјРµСЂ + СЃРјРµС‰РµРЅРёРµ): ";
         std::cin >> endNumber >> endShift;
         piquets.clear();
         piquets.push_back(Piquet(startNumber, startShift));
