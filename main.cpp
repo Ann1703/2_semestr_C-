@@ -2,23 +2,25 @@
 #include "../RZD 2.0/Peregon.h"
 #include "../RZD 2.0/Piquet.h"
 #include <locale> 
+#include "../RZD 2.0/PiquetHelper.h"
 
 
 int main() {
+   
    std:: setlocale(LC_ALL, "ru-RU");
-    // Создание перегона из двух пикетов
+    // РЎРѕР·РґР°РЅРёРµ РїРµСЂРµРіРѕРЅР° РёР· РґРІСѓС… РїРёРєРµС‚РѕРІ
     Peregon peregon1(Piquet(12, 28.37), Piquet(13, 15.72));
     std::cout << peregon1.ToString() << std::endl;
 
-    // Создание перегона из двух вещественных значений
+    // РЎРѕР·РґР°РЅРёРµ РїРµСЂРµРіРѕРЅР° РёР· РґРІСѓС… РІРµС‰РµСЃС‚РІРµРЅРЅС‹С… Р·РЅР°С‡РµРЅРёР№
     Peregon peregon2(1228.37, 1315.72);
     std::cout << peregon2.ToString() << std::endl;
     
-    // Добавление пикета в перегон
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РїРёРєРµС‚Р° РІ РїРµСЂРµРіРѕРЅ
     peregon2.AddPiquet(Piquet(12, 50.0));
     std::cout << peregon2.ToString() << std::endl;
     
-    // Чтение информации о перегоне из ввода
+    // Р§С‚РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ РїРµСЂРµРіРѕРЅРµ РёР· РІРІРѕРґР°
     Peregon peregon3;
     peregon3.ReadFromInput();
     std::cout << peregon3.ToString() << std::endl;
