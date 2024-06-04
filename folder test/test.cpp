@@ -1,20 +1,86 @@
-#include "gtest/gtest.h"
-#include "../Library/IntegerCollection.h"
+#include "pch.h"
+#include "CppUnitTest.h"
+#include "../Ex2.2.2/PriorityQueue.h"
 
-TEST(IntegerCollectionTest, BasicOperations) {
-    IntegerCollection collection = { 5, 2, 8, 1, 9 };
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace Queue;
 
-    
-    EXPECT_EQ(collection.toString(), "5 2 8 1 9 ");
+namespace Tests
+{
+	/**
+	* @brief Класс тестов для PriorityQueue.
+	*/
+	TEST_CLASS(Priority_Queue_Tests)
+	{
+	public:
+		/**
+		* @brief Тест для проверки добавления элементов в очередь.
+		*/
+		TEST_METHOD(Insert_DifferentPoints_True)
+		{
+			PriorityQueue pq;
+			pq.Insert({ 10, 100 });
+			pq.Insert({ 5, 50 });
+			pq.Insert({ 20, 200 });
+			pq.Insert({ 1, 10 });
 
-    
-    collection << 10;
-    EXPECT_EQ(collection.toString(), "5 2 8 1 9 10 ");
+			std::string expected = "10\n50\n100\n200\n";
+			Assert::AreEqual(expected, pq.ToString());
+		}
 
-   
-    collection >> 10; 
-    EXPECT_EQ(collection.toString(), "5 2 8 1 9 ");
+		/**
+		* @brief Тест для проверки минимального элемента в очереди.
+		*/
+		TEST_METHOD(ExtractMinimum_DifferentPoints_True)
+		{
+			PriorityQueue pq;
+			pq.Insert({ 10, 100 });
+			pq.Insert({ 5, 50 });
+			pq.Insert({ 20, 200 });
+			pq.Insert({ 1, 10 });
 
-  
-    EXPECT_EQ(collection.findMaxPriorityElement(), 9);
+			Assert::AreEqual(10, pq.ExtractMinimum());
+			std::string expected = "50\n100\n200\n";
+			Assert::AreEqual(expected, pq.ToString());
+		}
+
+		/**
+		* @brief Тест для проверки преобразования элемента в строку по индексу.
+		*/
+		TEST_METHOD(ToString_Point_True)
+		{
+			PriorityQueue pq;
+			pq.Insert({ 10, 100 });
+			pq.Insert({ 5, 50 });
+			pq.Insert({ 20, 200 });
+			pq.Insert({ 1, 10 });
+
+			Assert::AreEqual(50, pq.ElementToString(1));
+		}
+
+		/**
+		* @brief Тест для проверки перегрузки оператора доступа к элементу.
+		*/
+		TEST_METHOD(ToString_DifferentPoints_True)
+		{
+			PriorityQueue pq;
+			pq.Insert({ 10, 100 });
+			pq.Insert({ 5, 50 });
+			pq.Insert({ 20, 200 });
+			pq.Insert({ 1, 10 });
+
+			auto pair = pq[1];
+			Assert::AreEqual(5, pair.first);
+			Assert::AreEqual(50, pair.second);
+		}
+
+		/**
+		* @brief Тест для проверки выявления пустой очереди.
+		*/
+		TEST_METHOD(ElementToString_ZeroData_Success)
+		{
+			PriorityQueue pq;
+			Assert::ExpectException<std::logic_error>([&pq] { pq.ExtractMinimum(); }, L"В векторе нет данных.");
+		}
+	};
 }
