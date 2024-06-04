@@ -26,7 +26,7 @@ public:
     // Конструктор по вещественному значению
     Piquet(double length) : number(static_cast<int>(length / 100)), shift(length - 100 * number), length(length), isStandard(false) {}
 
-    // Геттеры
+   
     int Number() const { return number; }
     double Shift() const { return shift; }
     double Length() const { return length; }
