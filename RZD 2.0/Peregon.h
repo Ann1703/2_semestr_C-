@@ -80,7 +80,7 @@ public:
         piquets.push_back(Piquet(startNumber, startShift));
         piquets.push_back(Piquet(endNumber, endShift));
         std::sort(piquets.begin(), piquets.end());
-    }
+    } 
 };
 
 #endif // PEREGON_H

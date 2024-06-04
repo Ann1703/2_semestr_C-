@@ -61,7 +61,7 @@ std::string Piquet::ToString() const {
     std::stringstream ss;
     ss << "ПК" << (number >= 0 ? "" : "0") << std::abs(number) << "+" << std::fixed << std::setprecision(2) << shift;
     return ss.str();
-}
+} 
 
 bool Piquet::IsMeasured() const {
     return isStandard;

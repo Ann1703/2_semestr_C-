@@ -1,7 +1,7 @@
 #include <iostream>
 #include "../RZD 2.0/Peregon.h"
 #include "../RZD 2.0/Piquet.h"
-#include <locale>
+#include <locale> 
 
 
 int main() {
