@@ -26,63 +26,37 @@ public:
     // Конструктор по вещественному значению
     Piquet(double length) : number(static_cast<int>(length / 100)), shift(length - 100 * number), length(length), isStandard(false) {}
 
-   
+
     int Number() const { return number; }
     double Shift() const { return shift; }
     double Length() const { return length; }
     bool IsStandard() const { return isStandard; }
 
-    // Операторы сравнения
-    bool operator==(const Piquet& other) const {
-        return number == other.number && shift == other.shift;
-    }
+    /// Операторы сравнения
+    bool operator==(const Piquet& other) const;
 
-    bool operator!=(const Piquet& other) const {
-        return !(*this == other);
-    }
+    bool operator!=(const Piquet& other) const;
 
-    bool operator<(const Piquet& other) const {
-        if (number < other.number) {
-            return true;
-        }
-        else if (number == other.number && shift < other.shift) {
-            return true;
-        }
-        return false;
-    }
 
-    bool operator<=(const Piquet& other) const {
-        return (*this < other || *this == other);
-    }
+    bool operator<(const Piquet& other) const;
 
-    bool operator>(const Piquet& other) const {
-        return !(*this <= other);
-    }
+    bool operator<=(const Piquet& other) const; 
 
-    bool operator>=(const Piquet& other) const {
-        return !(*this < other);
-    }
+    bool operator>(const Piquet& other) const; 
+
+    bool operator>=(const Piquet& other) const; 
 
     // Операторы сдвига
-    Piquet operator+(const double& offset) const {
-        return Piquet(number, shift + offset);
-    }
+    Piquet operator+(const double& offset) const; 
 
-    Piquet operator-(const double& offset) const {
-        return Piquet(number, shift - offset);
-    }
+    Piquet operator-(const double& offset) const;
 
     // Метод toString
-    std::string ToString() const {
-        std::stringstream ss;
-        ss << "ПК" << (number >= 0 ? "" : "0") << std::abs(number) << "+" << std::fixed << std::setprecision(2) << shift;
-        return ss.str();
-    }
+    std::string ToString() const;
+
 
     // Метод, указывающий является ли пикет мерным
-    bool IsMeasured() const {
-        return isStandard;
-    }
+    bool IsMeasured() const;
 };
- 
+
 #endif // PIQUET_H
