@@ -1,11 +1,11 @@
 // Piquet.h
 #ifndef PIQUET_H
 #define PIQUET_H
+
 #include <iostream>
 #include <sstream>
 #include <iomanip>
 /// Класс Piquet, представляющий пикет на железной дороге.
-/// 
 /// Пикет - это условный километровый знак на железной дороге, 
 /// который используется для обозначения местоположения объектов.
 /// 
@@ -18,16 +18,24 @@ private:
     bool isStandard;
 
 public:
-    /// Конструктор по умолчанию
+    // 
+     *@ breaf Конструктор по умолчанию
+    //
     Piquet() : number(0), shift(0), length(100), isStandard(true) {}
 
-    /// Конструктор по пикету (целому числу)
+    // 
+    *@ breaf Конструктор по пикету (целому числу)
+    //
     Piquet(int number) : number(number), shift(0), length(100), isStandard(true) {}
 
-    /// Конструктор по пикету и смещению
+    // 
+    *@ breaf Конструктор по пикету и смещению
+    //
     Piquet(int number, double shift) : number(number), shift(shift), length(100 + shift), isStandard(false) {}
 
-    /// Конструктор по вещественному значению
+    // 
+    *@ breaf Конструктор по вещественному значению
+    //
     Piquet(double length) : number(static_cast<int>(length / 100)), shift(length - 100 * number), length(length), isStandard(false) {}
 
 
@@ -36,23 +44,38 @@ public:
     double Length() const { return length; }
     bool IsStandard() const { return isStandard; }
 
-    /// Операторы сравнения
+    //  
+    *@ breaf Операторы сравнения
+    //
     bool operator==(const Piquet& other) const;
-    bool operator!=(const Piquet& other) const;
-    bool operator<(const Piquet& other) const;
-    bool operator<=(const Piquet& other) const; 
-    bool operator>(const Piquet& other) const; 
-    bool operator>=(const Piquet& other) const; 
 
-    /// Операторы сдвига
+    bool operator!=(const Piquet& other) const;
+
+
+    bool operator<(const Piquet& other) const;
+
+    bool operator<=(const Piquet& other) const; 
+
+    bool operator>(const Piquet& other) const; 
+
+    bool operator>=(const Piquet& other) const; 
+    // 
+    *@ breaf Операторы сдвига
+    //
+       
     Piquet operator+(const double& offset) const; 
+
     Piquet operator-(const double& offset) const;
 
-    /// Метод toString
+    // 
+    *@ breaf Метод toString 
+    // 
     std::string ToString() const;
 
 
-    /// Метод, указывающий является ли пикет мерным
+    // 
+    *@ breaf Метод, указывающий является ли пикет мерным
+    //
     bool IsMeasured() const;
 };
 
