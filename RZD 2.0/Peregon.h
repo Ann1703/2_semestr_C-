@@ -70,16 +70,7 @@ public:
     // Метод чтения из стандартного потока ввода
     void ReadFromInput() {
         setlocale(LC_ALL, "ru-RUS");
-        int startNumber, endNumber;
-        double startShift, endShift;
-        std::cout << "Введите начальный пикет (номер + смещение): ";
-        std::cin >> startNumber >> startShift;
-        std::cout << "Введите конечный пикет (номер + смещение): ";
-        std::cin >> endNumber >> endShift;
-        piquets.clear();
-        piquets.push_back(Piquet(startNumber, startShift));
-        piquets.push_back(Piquet(endNumber, endShift));
-        std::sort(piquets.begin(), piquets.end());
+             std::sort(piquets.begin(), piquets.end());
     } 
 };
 
